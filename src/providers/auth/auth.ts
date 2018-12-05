@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthProvider {
 
-  constructor(public http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   login(user): Observable<any> {
-    return this.http.post(config.USER_URL + '/users/authenticate', user).pipe(
+    return this.http.post(config.USER_URL + '/authenticate', user).pipe(
         map((res: any) => this.setSession(res.data))
     );
   }
