@@ -22,13 +22,8 @@ export class LoginPage {
   ionViewCanEnter() {
     if (this.auth.isLoggedOut())
       return true;
-    else {
+    else 
       this.navCtrl.setRoot(HomePage);
-    }
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
 
   login() {
