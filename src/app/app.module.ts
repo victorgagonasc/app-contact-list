@@ -11,12 +11,15 @@ import { LoginPage } from '../pages/login/login';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RegisterPage } from '../pages/register/register';
+import { UserProvider } from '../providers/user/user';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -29,14 +32,16 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
-    AuthProvider
+    AuthProvider,
+    UserProvider
   ]
 })
 export class AppModule {}
