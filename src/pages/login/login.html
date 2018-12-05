@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar text-center>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-input placeholder="Email" name="username" formControlName="email" type="email" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Senha" name="password" formControlName="password" type="password" required></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <button ion-button block type="submit" [disabled]="!loginForm.valid">Login</button>
+      <p>
+        {{ loginForm.value | json }}
+      </p>
+    </ion-row>
+  </form>
+</ion-content>
