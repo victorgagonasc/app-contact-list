@@ -13,13 +13,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RegisterPage } from '../pages/register/register';
 import { UserProvider } from '../providers/user/user';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    DashboardPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { UserProvider } from '../providers/user/user';
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    DashboardPage
   ],
   providers: [
     StatusBar,
