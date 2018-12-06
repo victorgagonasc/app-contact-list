@@ -9,6 +9,9 @@
     <ion-row>
       <ion-col>
         <ion-list inset>
+          <p text-center>
+            <img src="../../assets/imgs/logotipo.png" alt="">
+          </p>
           <ion-item>
             <ion-input placeholder="Email" name="email" formControlName="email" type="email" required></ion-input>
           </ion-item>
@@ -19,10 +22,10 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <button ion-button block type="submit" [disabled]="!loginForm.valid">Login</button>
-      <p>
-        {{ loginForm.value | json }}
-      </p>
+      <button ion-button block type="submit" [disabled]="!loginForm.valid">Logar</button>
     </ion-row>
   </form>
+  <p text-center padding>
+    Não possui uma conta? <a tappable (click)="goToRegister()">Cadastre-se</a>
+  </p>
 </ion-content>

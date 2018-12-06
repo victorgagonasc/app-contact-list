@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, ViewController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
+import { RegisterPage } from '../register/register';
+import { DashboardPage } from '../dashboard/dashboard';
 
 @IonicPage()
 @Component({
@@ -12,7 +14,15 @@ import { HomePage } from '../home/home';
 export class LoginPage {
   loginForm;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private auth: AuthProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private fb: FormBuilder,
+    private auth: AuthProvider,
+    private viewCtrl: ViewController,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -22,19 +32,48 @@ export class LoginPage {
   ionViewCanEnter() {
     if (this.auth.isLoggedOut())
       return true;
-    else 
+    else
       this.navCtrl.setRoot(HomePage);
   }
 
-  login() {
-    this.auth.login(this.loginForm.value).subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
-        console.error(err);
-      }
-    );
+  showToast(message, status) {
+    const toast = this.toastCtrl.create({
+      message: message,
+      position: 'bottom',
+      duration: 3000
+    });
+
+    if (status == 'success') {
+      toast.onDidDismiss(() => {
+        this.navCtrl.setRoot(DashboardPage);
+      });
+    }
+
+    toast.present();
   }
 
+  login() {
+    let loading = this.loadingCtrl.create({
+      content: 'Realizando login'
+    });
+
+    loading.present().then(() => {
+      this.auth.login(this.loginForm.value).subscribe(
+        data => {
+          loading.dismiss();
+          this.showToast('Login realizado com sucesso. Você será redirecionado...', 'success');
+        },
+        err => {
+          loading.dismiss()
+          this.showToast(err.error.message, err.error.status);
+        }
+      );
+    });
+  }
+
+  goToRegister() {
+    this.navCtrl.push(RegisterPage).then(() => {
+      this.navCtrl.remove(this.viewCtrl.index, 1);
+    });
+  }
 }
