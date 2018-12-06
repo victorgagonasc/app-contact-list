@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Register</ion-title>
+    <ion-title>Cadastro</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -9,11 +9,14 @@
     <ion-row>
       <ion-col>
         <ion-list inset>
+          <p text-center>
+            <img src="../../assets/imgs/logotipo.png" alt="">
+          </p>
           <ion-item>
-            <ion-input placeholder="Name" name="name" formControlName="name" type="text" required></ion-input>
+            <ion-input placeholder="Nome" name="name" formControlName="name" type="text" required></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input placeholder="Email" name="username" formControlName="email" type="email" required></ion-input>
+            <ion-input placeholder="Email" name="email" formControlName="email" type="email" required></ion-input>
           </ion-item>
           <ion-item>
             <ion-input placeholder="Senha" name="password" formControlName="password" type="password" required></ion-input>
@@ -22,10 +25,10 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <button ion-button block type="submit" [disabled]="!registerForm.valid">Register</button>
-      <p>
-        {{ registerForm.value | json }}
-      </p>
+      <button ion-button block type="submit" [disabled]="!registerForm.valid">Registrar</button>
     </ion-row>
   </form>
+  <p text-center padding>
+    Já possui uma conta? <a tappable (click)="goToLogin()">Realize o login</a>
+  </p>
 </ion-content>

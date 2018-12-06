@@ -2,7 +2,7 @@ import { LoginPage } from './../login/login';
 import { AuthProvider } from './../../providers/auth/auth';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 
 @IonicPage()
@@ -13,7 +13,14 @@ import { UserProvider } from '../../providers/user/user';
 export class RegisterPage {
   registerForm;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private auth: AuthProvider, private userApi: UserProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private fb: FormBuilder,
+    private auth: AuthProvider,
+    private userApi: UserProvider,
+    private viewCtrl: ViewController
+  ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -39,4 +46,9 @@ export class RegisterPage {
     );
   }
 
+  goToLogin() {
+    this.navCtrl.push(LoginPage).then(() => {
+      this.navCtrl.remove(this.viewCtrl.index, 1);
+    });
+  }
 }
