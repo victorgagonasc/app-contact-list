@@ -16,6 +16,7 @@ import { UserProvider } from '../providers/user/user';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ContactsFormPage } from '../pages/contacts-form/contacts-form';
 import { ContactProvider } from '../providers/contact/contact';
+import { ContactDetailsModalPage } from '../pages/contact-details-modal/contact-details-modal';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ContactProvider } from '../providers/contact/contact';
     LoginPage,
     RegisterPage,
     DashboardPage,
-    ContactsFormPage
+    ContactsFormPage,
+    ContactDetailsModalPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { ContactProvider } from '../providers/contact/contact';
     LoginPage,
     RegisterPage,
     DashboardPage,
-    ContactsFormPage
+    ContactsFormPage,
+    ContactDetailsModalPage
   ],
   providers: [
     StatusBar,

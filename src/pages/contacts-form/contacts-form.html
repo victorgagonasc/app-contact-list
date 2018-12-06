@@ -1,13 +1,10 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Cadastro</ion-title>
+    <ion-title>{{ contact ? 'Editar' : 'Novo' }} Cadastro</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <p text-center padding>
-    Cadastre um novo contato abaixo:
-  </p>
   <form [formGroup]="contactForm" (ngSubmit)="sendContact()">
     <ion-row>
       <ion-col>
@@ -31,7 +28,7 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <button ion-button block type="submit" [disabled]="!contactForm.valid">Cadastrar</button>
+      <button ion-button block type="submit" [disabled]="!contactForm.valid">{{ contact ? 'Atualizar' : 'Cadastrar' }}</button>
     </ion-row>
   </form>
 </ion-content>

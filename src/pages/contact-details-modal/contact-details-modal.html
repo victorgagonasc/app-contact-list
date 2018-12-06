@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Detalhes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      Nome
+      <ion-note item-end>
+        {{ contact?.name }}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Email
+      <ion-note item-end>
+        {{ contact?.email }}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Celular
+      <ion-note item-end>
+        {{ contact?.mobilePhone }}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Telefone
+      <ion-note item-end>
+        {{ contact?.homePhone }}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Observação
+      <ion-note item-end>
+        {{ contact?.obs }}
+      </ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-row justify-content-center>
+    <button ion-button (click)="dismiss()">Voltar</button>
+  </ion-row>
+</ion-content>

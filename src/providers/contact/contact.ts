@@ -28,6 +28,14 @@ export class ContactProvider {
       }));
   }
 
+  delete(contactId): Observable<any> {
+    return this.http.delete(config.CONTACT_URL + `/${contactId}`);
+  }
+
+  update(contact): Observable<any> {
+    return this.http.put(config.CONTACT_URL + `/${contact._id}`, contact);
+  }
+
   getUser() {
     return JSON.parse(localStorage.getItem('user'));
   }

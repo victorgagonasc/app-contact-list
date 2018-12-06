@@ -10,4 +10,12 @@
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
+  <ion-list *ngIf="contacts && contacts.length > 0">
+    <button ion-item *ngFor="let contact of contacts" (click)="presentActionSheet(contact)">
+      {{ contact.name }}
+    </button>
+  </ion-list>
+  <ion-card padding text-center *ngIf="contacts && contacts.length <= 0">
+    Você não possui nenhum contato cadastrado
+  </ion-card>
 </ion-content>
