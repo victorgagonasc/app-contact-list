@@ -13,6 +13,7 @@ import { DashboardPage } from '../dashboard/dashboard';
 })
 export class LoginPage {
   loginForm;
+  isLogging = false;
 
   constructor(
     public navCtrl: NavController,
@@ -45,6 +46,7 @@ export class LoginPage {
 
     if (status == 'success') {
       toast.onDidDismiss(() => {
+        this.isLogging = false;
         this.navCtrl.setRoot(DashboardPage);
       });
     }
@@ -53,6 +55,8 @@ export class LoginPage {
   }
 
   login() {
+    this.isLogging = true;
+
     let loading = this.loadingCtrl.create({
       content: 'Realizando login'
     });
@@ -60,12 +64,13 @@ export class LoginPage {
     loading.present().then(() => {
       this.auth.login(this.loginForm.value).subscribe(
         data => {
-          loading.dismiss();
           this.showToast('Login realizado com sucesso. Você será redirecionado...', 'success');
+          loading.dismiss();
         },
         err => {
           loading.dismiss()
           this.showToast(err.error.message, err.error.status);
+          this.isLogging = false;
         }
       );
     });
