@@ -1,18 +1,25 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Lista de contatos
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+  <p no-padding text-center>
+    <img src="../../assets/imgs/logotipo.png" alt="">
   </p>
   <p>
-      <button ion-button (click)="goToLogin()">Go to Login</button>
-      <button ion-button (click)="goToRegister()">Go to Register</button>
+    Bem vindo ao app número um em gerenciamento de contatos.
   </p>
+  <p>
+    Gerencie de maneira prática e eficaz a sua lista de contatos, seja onde estiver.
+  </p>
+  <p>Está esperando o que? Faça o login abaixo ou crie uma nova conta e nunca mais perca as informações dos seus
+    contatos favoritos:</p>
+  <ion-row justify-content-center>
+    <button ion-button (click)="goToLogin()">Realizar login</button>
+    <button ion-button outline (click)="goToRegister()">Registrar-se</button>
+  </ion-row>
 </ion-content>
