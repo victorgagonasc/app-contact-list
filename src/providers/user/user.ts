@@ -15,4 +15,7 @@ export class UserProvider {
       map((res: any) => console.log(res)));
   }
 
+  getUser() {
+    return JSON.parse(localStorage.getItem('user'));
+  }
 }
