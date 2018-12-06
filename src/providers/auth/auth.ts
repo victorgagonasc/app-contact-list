@@ -9,17 +9,27 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthProvider {
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  login(user): Observable<any> {
-    return this.http.post(config.USER_URL + '/authenticate', user).pipe(
-        map((res: any) => this.setSession(res.data))
-    );
-  }
+    login(user): Observable<any> {
+        return this.http.post(config.USER_URL + '/authenticate', user).pipe(
+            map((res: any) => {
+                this.setSession(res.data);
+                return res;
+            })
+        );
+    }
 
     private setSession(authResult) {
+        let user = {
+            id: authResult.user._id,
+            name: authResult.user.name,
+            email: authResult.user.email
+        };
+
         const expiresAt = moment().add(authResult.expiresIn, 'second');
 
+        localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('id_token', authResult.token);
         localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     }
