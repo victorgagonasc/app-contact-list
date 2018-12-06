@@ -14,6 +14,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RegisterPage } from '../pages/register/register';
 import { UserProvider } from '../providers/user/user';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { ContactsFormPage } from '../pages/contacts-form/contacts-form';
+import { ContactProvider } from '../providers/contact/contact';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
     HomePage,
     LoginPage,
     RegisterPage,
-    DashboardPage
+    DashboardPage,
+    ContactsFormPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
     HomePage,
     LoginPage,
     RegisterPage,
-    DashboardPage
+    DashboardPage,
+    ContactsFormPage
   ],
   providers: [
     StatusBar,
@@ -44,7 +48,8 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     AuthProvider,
-    UserProvider
+    UserProvider,
+    ContactProvider
   ]
 })
 export class AppModule {}

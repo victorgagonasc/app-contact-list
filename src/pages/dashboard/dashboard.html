@@ -1,9 +1,13 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar text-center>
     <ion-title>Dashboard</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="goToContactsForm()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

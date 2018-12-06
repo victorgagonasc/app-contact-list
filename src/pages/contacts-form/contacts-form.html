@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Cadastro</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p text-center padding>
+    Cadastre um novo contato abaixo:
+  </p>
+  <form [formGroup]="contactForm" (ngSubmit)="sendContact()">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-input placeholder="Nome" name="name" formControlName="name" type="text" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Email" name="email" formControlName="email" type="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Celular" name="mobilePhone" formControlName="mobilePhone" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Telefone" name="homePhone" formControlName="homePhone" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input placeholder="Observação" name="obs" formControlName="obs" type="text"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <button ion-button block type="submit" [disabled]="!contactForm.valid">Cadastrar</button>
+    </ion-row>
+  </form>
+</ion-content>

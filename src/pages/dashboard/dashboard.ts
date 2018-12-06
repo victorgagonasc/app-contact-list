@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the DashboardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ContactsFormPage } from '../contacts-form/contacts-form';
+import { AuthProvider } from '../../providers/auth/auth';
+import { HomePage } from '../home/home';
+import { ContactProvider } from '../../providers/contact/contact';
+import { UserProvider } from '../../providers/user/user';
 
 @IonicPage()
 @Component({
@@ -15,11 +13,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private auth: AuthProvider,
+    private userApi: UserProvider,
+    private contactApi: ContactProvider
+  ) {
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
+  ionViewWillEnter() {
+    let userId = this.userApi.getUser().id;
+    this.contactApi.getAll().subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
   }
 
+  ionViewCanEnter() {
+    if (this.auth.isLoggedIn())
+      return true;
+    else
+      this.navCtrl.setRoot(HomePage);
+  }
+
+  goToContactsForm() {
+    this.navCtrl.push(ContactsFormPage)
+  }
 }
